@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "902099365286",
+    "firebase_url": "https://wisatabandung-b13f5.firebaseio.com",
+    "project_id": "wisatabandung-b13f5",
+    "storage_bucket": "wisatabandung-b13f5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:902099365286:android:ca9d14d21289e387c0b367",
+        "android_client_info": {
+          "package_name": "com.example.wisatabandung"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "902099365286-s3ssntfuggac8h3s8ttd26e48v757vp9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.wisatabandung",
+            "certificate_hash": "0096f32afd83437ae2e838e615e11aee8db13ee6"
+          }
+        },
+        {
+          "client_id": "902099365286-lutor11rnavjcqe26r7rqnlavsm48daf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCrkwK14wOuSpjF4zxds4Rx_Bcp2p5v9Zo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "902099365286-lutor11rnavjcqe26r7rqnlavsm48daf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
