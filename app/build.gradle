@@ -39,4 +39,8 @@ dependencies {
     //image
     implementation 'com.github.florent37:shapeofview:1.3.2'
     implementation 'com.squareup.picasso:picasso:2.71828'
+
+    //ticket view
+    implementation 'com.vipulasri:ticketview:1.0.7'
+    implementation 'com.github.mreram:ticketview:1.0.0'
 }
