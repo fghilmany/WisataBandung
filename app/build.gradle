@@ -43,4 +43,8 @@ dependencies {
     //ticket view
     implementation 'com.vipulasri:ticketview:1.0.7'
     implementation 'com.github.mreram:ticketview:1.0.0'
+
+    //anko
+    implementation "org.jetbrains.anko:anko:$anko_version"
+    implementation "org.jetbrains.anko:anko-design:$anko_version"
 }

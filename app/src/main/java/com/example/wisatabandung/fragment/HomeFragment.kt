@@ -1,7 +1,6 @@
 package com.example.wisatabandung.fragment
 
 
-import android.media.Image
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
@@ -10,11 +9,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import com.example.wisatabandung.R
+import com.example.wisatabandung.activity.ListDestinationActivity
 import com.example.wisatabandung.item.Category
 import com.example.wisatabandung.adapter.CategoryAdapter
 import com.example.wisatabandung.adapter.ForYouAdapter
 import com.example.wisatabandung.item.ForYou
 import kotlinx.android.synthetic.main.fragment_home.*
+import org.jetbrains.anko.support.v4.startActivity
 
 class HomeFragment : Fragment() {
 
@@ -34,7 +35,7 @@ class HomeFragment : Fragment() {
 
         rv_category.layoutManager = LinearLayoutManager(activity,LinearLayoutManager.HORIZONTAL, false)
         rv_category.adapter = CategoryAdapter(activity!!.applicationContext,categories){
-            Toast.makeText(activity,it.id,Toast.LENGTH_SHORT).show()
+            startActivity<ListDestinationActivity>()
 
         }
 

@@ -9,6 +9,8 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
+        <activity android:name=".activity.ListDestinationActivity">
+        </activity>
         <activity android:name=".activity.DetailDestination">
         </activity>
         <activity android:name=".activity.HomeActivity">
