@@ -1,4 +1,4 @@
-package com.example.wisatabandung
+package com.example.wisatabandung.activity
 
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
+import com.example.wisatabandung.R
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {

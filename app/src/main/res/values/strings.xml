@@ -1,3 +1,33 @@
 <resources>
     <string name="app_name">Wisata Bandung</string>
+    <string name="home">Home</string>
+    <string name="myticket">My Ticket</string>
+    <string name="profil">Profil</string>
+
+    <string-array name="id_category">
+        <item>camp</item>
+        <item>family</item>
+        <item>park</item>
+        <item>villa</item>
+        <item>museum</item>
+    </string-array>
+
+    <string-array name="name_category">
+        <item>Camping</item>
+        <item>Keluarga</item>
+        <item>Taman</item>
+        <item>Villa</item>
+        <item>Museum</item>
+    </string-array>
+
+    <array name="image_category">
+        <item>@drawable/tent</item>
+        <item>@drawable/table</item>
+        <item>@drawable/swing</item>
+        <item>@drawable/house</item>
+        <item>@drawable/museum</item>
+    </array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

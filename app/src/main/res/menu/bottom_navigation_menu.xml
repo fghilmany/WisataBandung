@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+        xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+            android:id="@+id/home"
+            android:enabled="true"
+            android:title="@string/home"
+            android:icon="@drawable/home"
+            app:showAsAction="ifRoom"
+    />
+
+    <item
+            android:id="@+id/my_ticket"
+            android:enabled="true"
+            android:title="@string/myticket"
+            android:icon="@drawable/ticket"
+            app:showAsAction="ifRoom"
+    />
+
+    <item
+            android:id="@+id/profil"
+            android:enabled="true"
+            android:title="@string/profil"
+            android:icon="@drawable/profil"
+            app:showAsAction="ifRoom"
+    />
+
+</menu>
