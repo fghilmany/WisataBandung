@@ -34,6 +34,10 @@ class ForYouViewPager(view: View):RecyclerView.ViewHolder(view) {
             Picasso.get().load(it).into(forYouImage)
         }
 
+        itemView.setOnClickListener{
+            listener(items)
+        }
+
     }
 
 }

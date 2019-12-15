@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import com.example.wisatabandung.R
+import com.example.wisatabandung.activity.DetailDestination
 import com.example.wisatabandung.activity.ListDestinationActivity
 import com.example.wisatabandung.item.Category
 import com.example.wisatabandung.adapter.CategoryAdapter
@@ -41,7 +42,7 @@ class HomeFragment : Fragment() {
 
         rv_for_you.layoutManager = LinearLayoutManager(activity,LinearLayoutManager.HORIZONTAL,false)
         rv_for_you.adapter = ForYouAdapter(activity!!.applicationContext,forYou){
-            Toast.makeText(activity,"Bandung",Toast.LENGTH_SHORT).show()
+            startActivity<DetailDestination>()
         }
     }
 
