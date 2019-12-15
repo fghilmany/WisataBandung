@@ -19,13 +19,17 @@
             <com.github.florent37.shapeofview.shapes.CircleView
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp" app:layout_constraintTop_toTopOf="parent" android:id="@+id/circleView2">
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:id="@+id/circleView2">
                 <ImageView
                         android:id="@+id/iv_profil_home"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:src="@drawable/rsz_1wisata_bandung"
+                        android:scaleType="centerCrop"
                         android:background="@drawable/circle_outline"
                 />
             </com.github.florent37.shapeofview.shapes.CircleView>
