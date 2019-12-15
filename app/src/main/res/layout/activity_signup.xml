@@ -83,7 +83,8 @@
                             app:fabSize="mini"
                             app:layout_constraintTop_toTopOf="@+id/circleView"
                             app:layout_constraintStart_toStartOf="@+id/circleView"
-                            android:layout_marginTop="44dp" android:layout_marginStart="40dp"/>
+                            android:layout_marginTop="44dp"
+                            android:layout_marginStart="40dp"/>
 
 
                 </android.support.constraint.ConstraintLayout>

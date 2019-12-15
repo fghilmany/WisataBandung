@@ -66,8 +66,8 @@ class HomeFragment : Fragment() {
 
     private fun initDataForYou() {
         forYou.clear()
-        forYou.add(ForYou("1", R.drawable.gunung_putri, "Gunung Putri Lembang"))
-        forYou.add(ForYou("1", R.drawable.gunung_putri, "Gunung Putri Lembang"))
+        forYou.add(ForYou("1", R.drawable.gunung_putri1, "Gunung Putri Lembang"))
+        forYou.add(ForYou("1", R.drawable.gunung_putri1, "Gunung Putri Lembang"))
     }
 
 

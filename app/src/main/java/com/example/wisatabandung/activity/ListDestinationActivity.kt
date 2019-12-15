@@ -46,7 +46,7 @@ class ListDestinationActivity : AppCompatActivity() {
 
         rv_list_destination.layoutManager = LinearLayoutManager(this)
         rv_list_destination.adapter = DestinationAdapter(this, destinations){
-            Toast.makeText(this,"Bandung", Toast.LENGTH_SHORT).show()
+            startActivity<DetailDestination>()
         }
     }
 
