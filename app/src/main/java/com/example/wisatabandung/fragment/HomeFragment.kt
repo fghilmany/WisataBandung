@@ -32,6 +32,8 @@ class HomeFragment : Fragment() {
 
     private lateinit var ref : DatabaseReference
     private lateinit var ref1 : DatabaseReference
+    private val categories:MutableList<Category> = mutableListOf()
+
     private var username : String = ""
 
     override fun onCreateView(
@@ -54,12 +56,13 @@ class HomeFragment : Fragment() {
         rv_category.layoutManager = LinearLayoutManager(activity,LinearLayoutManager.HORIZONTAL, false)
         rv_category.adapter = CategoryAdapter(activity!!.applicationContext,categories){
             startActivity<ListDestinationActivity>(
-                "id_destination" to it.id
+                "id_destination" to it.id,
+                "username" to username
             )
 
         }
 
-        rv_for_you.setHasFixedSize(true)
+        //rv_for_you.setHasFixedSize(true)
         rv_for_you.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL,false)
 
         foryouDataFromFirebase()
@@ -96,7 +99,7 @@ class HomeFragment : Fragment() {
 
     private fun initDataFirebase() {
         val intent = activity!!.intent
-        username = intent.getStringExtra("username")
+            username = intent.getStringExtra("username")
 
         ref = FirebaseDatabase.getInstance().getReference().child("user").child(username)
         ref.addListenerForSingleValueEvent(object : ValueEventListener{
@@ -114,9 +117,6 @@ class HomeFragment : Fragment() {
 
     }
 
-    private val categories:MutableList<Category> = mutableListOf()
-    private val forYou:MutableList<ForYou> = mutableListOf()
-
     private fun initDataCategory() {
         val categoryId = resources.getStringArray(R.array.id_category)
         val categoryName = resources.getStringArray(R.array.name_category)
@@ -132,26 +132,6 @@ class HomeFragment : Fragment() {
         categoryImage.recycle()
 
     }
-
-   /* private fun initDataForYou() {
-
-        forYou.clear()
-        ref = FirebaseDatabase.getInstance().getReference().child("destination").child("camp")
-        ref.addListenerForSingleValueEvent(object : ValueEventListener{
-            override fun onCancelled(p0: DatabaseError) {
-
-            }
-
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                for (dataSnapshot1 in dataSnapshot.getChildren()) {
-                    val p = dataSnapshot1.getValue(ForYou::class.java)
-                    forYou.add(p!!)
-                }
-
-            }
-
-        })
-    }*/
 
     class forYouViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 }
