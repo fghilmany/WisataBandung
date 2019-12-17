@@ -47,12 +47,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Rp. "
-                    app:layout_constraintEnd_toStartOf="@+id/balance_home"
-                    app:layout_constraintTop_toTopOf="@+id/balance_home"
-                    app:layout_constraintBottom_toBottomOf="@+id/balance_home" android:id="@+id/textView2"/>
+                    app:layout_constraintEnd_toStartOf="@+id/tv_balance_home"
+                    app:layout_constraintTop_toTopOf="@+id/tv_balance_home"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_balance_home" android:id="@+id/textView2"/>
 
             <TextView
-                    android:id="@+id/balance_home"
+                    android:id="@+id/tv_balance_home"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="16sp"

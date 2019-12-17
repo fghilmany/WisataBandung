@@ -24,13 +24,6 @@ class ListDestinationActivity : AppCompatActivity() {
         val toolbar:Toolbar = findViewById(R.id.toolbar_acashmemoreport)
         setSupportActionBar(toolbar)
 
-/*
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            val window = window
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-            window.statusBarColor = resources.getColor(R.color.colorPrimaryDark)
-        }*/
-
         // Show menu icon
         val actionBar = supportActionBar
         actionBar!!.setDisplayHomeAsUpEnabled(true)

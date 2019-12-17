@@ -7,8 +7,10 @@ import android.os.Handler
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
+import android.widget.Toast
 import com.example.wisatabandung.R
 import kotlinx.android.synthetic.main.activity_success_signup.*
+import org.jetbrains.anko.startActivity
 
 class SuccessSignupActivity : AppCompatActivity() {
 
@@ -16,6 +18,8 @@ class SuccessSignupActivity : AppCompatActivity() {
     private lateinit var btt : Animation
     private lateinit var splash : Animation
     private lateinit var stand : Animation
+
+    private var username : String = ""
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,9 +37,13 @@ class SuccessSignupActivity : AppCompatActivity() {
         tv_hai2.startAnimation(btt)
         progress_bar_hai.startAnimation(stand)
 
+        username = intent.getStringExtra("username")
+
         Handler().postDelayed({
-            val i = Intent(this, HomeActivity::class.java)
-            startActivity(i)
+            Toast.makeText(applicationContext,username,Toast.LENGTH_SHORT).show()
+            startActivity<HomeActivity>(
+                "username" to username
+            )
             finish()
 
         },3500)

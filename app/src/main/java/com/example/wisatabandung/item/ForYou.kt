@@ -1,3 +1,16 @@
 package com.example.wisatabandung.item
+class ForYou {
 
-data class ForYou (val id : String?, val image : Int?, val name:String?)
+    var photo_1 : String? = ""
+    var name:String? = ""
+
+    constructor(){
+
+    }
+
+    constructor(photo_1: String?, name: String?) {
+        this.photo_1 = photo_1
+        this.name = name
+    }
+
+}

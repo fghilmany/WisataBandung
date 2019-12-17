@@ -1,9 +1,12 @@
 package com.example.wisatabandung.fragment
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.view.menu.ActionMenuItemView
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,12 +16,23 @@ import com.example.wisatabandung.activity.DetailDestination
 import com.example.wisatabandung.activity.ListDestinationActivity
 import com.example.wisatabandung.item.Category
 import com.example.wisatabandung.adapter.CategoryAdapter
-import com.example.wisatabandung.adapter.ForYouAdapter
 import com.example.wisatabandung.item.ForYou
+import com.firebase.ui.database.FirebaseRecyclerAdapter
+import com.firebase.ui.database.FirebaseRecyclerOptions
+import com.google.firebase.database.*
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.fragment_profil.*
 import org.jetbrains.anko.support.v4.startActivity
+import com.google.firebase.database.DataSnapshot
+import kotlinx.android.synthetic.main.for_you_item.view.*
+
 
 class HomeFragment : Fragment() {
+
+    private lateinit var ref : DatabaseReference
+    private lateinit var ref1 : DatabaseReference
+    private var username : String = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,18 +46,72 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         initDataCategory()
-        initDataForYou()
+        //initDataForYou()
+        initDataFirebase()
+        ref1 = FirebaseDatabase.getInstance().getReference("destination").child("camp")
+
 
         rv_category.layoutManager = LinearLayoutManager(activity,LinearLayoutManager.HORIZONTAL, false)
         rv_category.adapter = CategoryAdapter(activity!!.applicationContext,categories){
-            startActivity<ListDestinationActivity>()
+            startActivity<ListDestinationActivity>(
+                "id_destination" to it.id
+            )
 
         }
 
-        rv_for_you.layoutManager = LinearLayoutManager(activity,LinearLayoutManager.HORIZONTAL,false)
-        rv_for_you.adapter = ForYouAdapter(activity!!.applicationContext,forYou){
-            startActivity<DetailDestination>()
+        rv_for_you.setHasFixedSize(true)
+        rv_for_you.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL,false)
+
+        foryouDataFromFirebase()
+    }
+
+    private fun foryouDataFromFirebase() {
+
+        val options = FirebaseRecyclerOptions.Builder<ForYou>()
+            .setQuery(ref1,ForYou::class.java)
+            .setLifecycleOwner(this)
+            .build()
+
+        val firebaseRecyclerAdapter = object : FirebaseRecyclerAdapter<ForYou, forYouViewHolder>(options){
+            override fun onCreateViewHolder(p0: ViewGroup, p1: Int): forYouViewHolder {
+                return forYouViewHolder(LayoutInflater.from(p0.context).inflate(R.layout.for_you_item, p0, false))
+            }
+
+            override fun onBindViewHolder(holder: forYouViewHolder, position: Int, model: ForYou) {
+                holder.itemView.tv_for_you.setText(model.name)
+                Picasso.get().load(model.photo_1).into(holder.itemView.iv_for_you)
+                holder.itemView.setOnClickListener {
+                    startActivity<DetailDestination>(
+                        "username" to username
+                    )
+                }
+
+            }
+
         }
+
+        rv_for_you.adapter = firebaseRecyclerAdapter
+
+    }
+
+    private fun initDataFirebase() {
+        val intent = activity!!.intent
+        username = intent.getStringExtra("username")
+
+        ref = FirebaseDatabase.getInstance().getReference().child("user").child(username)
+        ref.addListenerForSingleValueEvent(object : ValueEventListener{
+            override fun onCancelled(p0: DatabaseError) {
+
+            }
+
+            override fun onDataChange(p0: DataSnapshot) {
+                tv_name_home.setText(p0.child("name").value.toString())
+                tv_balance_home.setText(p0.child("balance").value.toString())
+                Picasso.get().load(p0.child("url_foto").value.toString()).centerCrop().fit().into(iv_profil_home)
+            }
+
+        })
+
     }
 
     private val categories:MutableList<Category> = mutableListOf()
@@ -65,11 +133,27 @@ class HomeFragment : Fragment() {
 
     }
 
-    private fun initDataForYou() {
+   /* private fun initDataForYou() {
+
         forYou.clear()
-        forYou.add(ForYou("1", R.drawable.gunung_putri1, "Gunung Putri Lembang"))
-        forYou.add(ForYou("1", R.drawable.gunung_putri1, "Gunung Putri Lembang"))
-    }
+        ref = FirebaseDatabase.getInstance().getReference().child("destination").child("camp")
+        ref.addListenerForSingleValueEvent(object : ValueEventListener{
+            override fun onCancelled(p0: DatabaseError) {
 
+            }
 
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                for (dataSnapshot1 in dataSnapshot.getChildren()) {
+                    val p = dataSnapshot1.getValue(ForYou::class.java)
+                    forYou.add(p!!)
+                }
+
+            }
+
+        })
+    }*/
+
+    class forYouViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 }
+
+
