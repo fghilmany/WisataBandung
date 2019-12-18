@@ -15,9 +15,13 @@ class DetailDestination : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var pagerAdapter : PagerAdapter
 
+    private var username : String = ""
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_destination)
+
+        username = intent.getStringExtra("username")
 
         initToolabar()
         initPager()
@@ -30,7 +34,9 @@ class DetailDestination : AppCompatActivity(), View.OnClickListener {
     override fun onClick(v: View?) {
         when(v!!.id){
             R.id.btn_buy_ticket->{
-                startActivity<SuccessBuyActivity>()
+                startActivity<SuccessBuyActivity>(
+                    "username" to username
+                )
             }
         }
     }
@@ -45,8 +51,9 @@ class DetailDestination : AppCompatActivity(), View.OnClickListener {
         supportActionBar!!.setDisplayShowTitleEnabled(false)
 
         toolbar.setNavigationOnClickListener {
-            val i = Intent(this, ListDestinationActivity::class.java)
-            startActivity(i)
+            startActivity<ListDestinationActivity>(
+                "username" to username
+            )
             finish()
         }
     }

@@ -29,6 +29,7 @@ class ListDestinationActivity : AppCompatActivity() {
 
     private var id_destination : String = ""
     private var username : String = ""
+    private var slogan : String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,6 +39,9 @@ class ListDestinationActivity : AppCompatActivity() {
 
         username = intent.getStringExtra("username")
         id_destination = intent.getStringExtra("id_destination")
+        slogan = intent.getStringExtra("slogan")
+
+        tv_title_list.setText(slogan)
 
         ref = FirebaseDatabase.getInstance().getReference("destination").child(id_destination)
         //rv_list_destination.setHasFixedSize(true)
@@ -63,7 +67,9 @@ class ListDestinationActivity : AppCompatActivity() {
                 holder.itemView.tv_destination_price.setText(model.price.toString())
                 Picasso.get().load(model.photo_1).into(holder.itemView.iv_destination_poster)
                 holder.itemView.setOnClickListener{
-                    startActivity<DetailDestination>()
+                    startActivity<DetailDestination>(
+                        "username" to username
+                    )
                 }
             }
 

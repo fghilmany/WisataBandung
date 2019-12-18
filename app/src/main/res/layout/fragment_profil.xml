@@ -154,38 +154,6 @@
                   android:id="@+id/view3" android:layout_below="@id/tv_email_profil"/>
 
             <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="TTL"
-                    android:textSize="18sp"
-                    android:textColor="@color/text"
-                    android:layout_alignTop="@id/view3" android:layout_alignParentLeft="true"
-                    android:layout_marginStart="16dp" android:layout_marginTop="16dp"
-                    android:layout_marginBottom="16dp"/>
-
-            <TextView
-                    android:id="@+id/tv_ttl"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="11-01-99"
-                    android:textSize="18sp"
-                    android:textColor="@color/text"
-                    android:textStyle="bold"
-                    android:layout_alignParentRight="true" android:layout_alignTop="@id/view3"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginRight="16dp"/>
-
-
-            <View android:layout_width="match_parent"
-                  android:layout_height="2dp"
-                  android:background="#E9E9E9"
-                  android:layout_marginTop="16dp"
-                  android:layout_marginStart="16dp"
-                  android:layout_marginEnd="16dp"
-                  android:layout_marginBottom="16dp"
-                  android:id="@+id/view4" android:layout_below="@id/tv_ttl"/>
-
-            <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="- Log Out -"

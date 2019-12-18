@@ -8,6 +8,7 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import com.example.wisatabandung.R
 import kotlinx.android.synthetic.main.activity_success_buy.*
+import org.jetbrains.anko.startActivity
 
 class SuccessBuyActivity : AppCompatActivity() {
 
@@ -16,9 +17,13 @@ class SuccessBuyActivity : AppCompatActivity() {
     private lateinit var splash : Animation
     private lateinit var stand : Animation
 
+    private var username : String = ""
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_success_buy)
+
+        username = intent.getStringExtra("username")
 
         ttb = AnimationUtils.loadAnimation(this,R.anim.ttb)
         btt = AnimationUtils.loadAnimation(this,R.anim.btt)
@@ -32,8 +37,9 @@ class SuccessBuyActivity : AppCompatActivity() {
         progress_bar_success.startAnimation(stand)
 
         Handler().postDelayed({
-            val i = Intent(this, HomeActivity::class.java)
-            startActivity(i)
+            startActivity<HomeActivity>(
+                "username" to username
+            )
             finish()
 
         },3500)

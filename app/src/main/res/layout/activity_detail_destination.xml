@@ -79,10 +79,34 @@
                         android:layout_marginTop="22dp"/>
 
                 <TextView
+                        android:id="@+id/tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="Rp. "
+                        android:textSize="14sp"
+                        android:textColor="@color/text"
+                        android:layout_marginStart="32dp"
+
+                        android:layout_alignParentBottom="false" android:layout_below="@id/tv_name_destination"/>
+
+
+                <TextView
+                        android:id="@+id/tv_price_detail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        tools:text="200.00"
+                        android:textSize="14sp"
+                        android:textColor="#F70000"
+                        android:layout_marginStart="0dp"
+                        android:layout_marginEnd="16dp"
+
+                        android:layout_below="@id/tv_name_destination" android:layout_toRightOf="@id/tv"/>
+
+                <TextView
                         android:id="@+id/tv_detail_destination"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/detail_dummy"
+                        tools:text="cek"
                         android:textSize="14sp"
                         android:textColor="@color/text"
                         android:layout_marginTop="16dp"

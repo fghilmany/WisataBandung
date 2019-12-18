@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment
 import android.support.v7.view.menu.ActionMenuItemView
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -47,6 +48,8 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        Log.e("gambar",FirebaseDatabase.getInstance().getReference("destination").child("camp").child("gunung_putri").child("photo_1").toString())
+
         initDataCategory()
         //initDataForYou()
         initDataFirebase()
@@ -57,6 +60,7 @@ class HomeFragment : Fragment() {
         rv_category.adapter = CategoryAdapter(activity!!.applicationContext,categories){
             startActivity<ListDestinationActivity>(
                 "id_destination" to it.id,
+                "slogan" to it.slogan,
                 "username" to username
             )
 
@@ -111,6 +115,8 @@ class HomeFragment : Fragment() {
                 tv_name_home.setText(p0.child("name").value.toString())
                 tv_balance_home.setText(p0.child("balance").value.toString())
                 Picasso.get().load(p0.child("url_foto").value.toString()).centerCrop().fit().into(iv_profil_home)
+                Toast.makeText(activity,p0.child("url_foto").value.toString(),Toast.LENGTH_SHORT).show()
+                Log.e("gambar2",p0.child("url_foto").value.toString())
             }
 
         })
@@ -121,12 +127,14 @@ class HomeFragment : Fragment() {
         val categoryId = resources.getStringArray(R.array.id_category)
         val categoryName = resources.getStringArray(R.array.name_category)
         val categoryImage = resources.obtainTypedArray(R.array.image_category)
+        val slogan = resources.getStringArray(R.array.slogan_category)
 
         categories.clear()
         for (i in categoryName.indices){
             categories.add(Category(categoryId[i]
                 ,categoryName[i]
-                ,categoryImage.getResourceId(i,0)))
+                ,categoryImage.getResourceId(i,0)
+                ,slogan[i]))
         }
 
         categoryImage.recycle()
