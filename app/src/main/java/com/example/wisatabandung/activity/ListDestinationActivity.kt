@@ -27,7 +27,7 @@ class ListDestinationActivity : AppCompatActivity() {
 
     private lateinit var ref : DatabaseReference
 
-    private var id_destination : String = ""
+    private var id_category : String = ""
     private var username : String = ""
     private var slogan : String = ""
 
@@ -38,12 +38,12 @@ class ListDestinationActivity : AppCompatActivity() {
         addToolabar()
 
         username = intent.getStringExtra("username")
-        id_destination = intent.getStringExtra("id_destination")
+        id_category = intent.getStringExtra("id_category")
         slogan = intent.getStringExtra("slogan")
 
         tv_title_list.setText(slogan)
 
-        ref = FirebaseDatabase.getInstance().getReference("destination").child(id_destination)
+        ref = FirebaseDatabase.getInstance().getReference("destination").child(id_category)
         //rv_list_destination.setHasFixedSize(true)
         rv_list_destination.layoutManager = LinearLayoutManager(this)
 
@@ -68,7 +68,11 @@ class ListDestinationActivity : AppCompatActivity() {
                 Picasso.get().load(model.photo_1).into(holder.itemView.iv_destination_poster)
                 holder.itemView.setOnClickListener{
                     startActivity<DetailDestination>(
-                        "username" to username
+                        "username" to username,
+                        "id_category" to id_category,
+                        "id_destination" to model.id
+
+
                     )
                 }
             }

@@ -1,6 +1,7 @@
 package com.example.wisatabandung.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.view.ViewGroup
 import android.view.LayoutInflater
 import android.support.v4.view.PagerAdapter
@@ -12,14 +13,18 @@ import com.example.wisatabandung.R
 import com.example.wisatabandung.fragment.ProfilFragment
 import com.google.firebase.database.*
 import com.squareup.picasso.Picasso
+import org.jetbrains.anko.intentFor
+import android.app.Activity
+
+
+
 
 
 class PagerAdapter(private val context: Context) : PagerAdapter() {
 
     private lateinit var ref : DatabaseReference
-    private var ar : String = ""
-    private var ar1 : String = ""
-    private var ar2 : String = ""
+    private var id_destination : String = ""
+    private var id_category : String = ""
     /*
         This callback is responsible for creating a page. We inflate the layout and set the drawable
         to the ImageView based on the position. In the end we add the inflated layout to the parent
@@ -30,7 +35,10 @@ class PagerAdapter(private val context: Context) : PagerAdapter() {
         val view = LayoutInflater.from(context).inflate(R.layout.pager_item, null)
         val imageView : ImageView = view.findViewById(R.id.iv_pager)
         getImageAt(position)
-        ref = FirebaseDatabase.getInstance().getReference("destination").child("camp")
+        val intent = (context as Activity).intent
+        id_destination = intent.getStringExtra("id_destination")
+        id_category = intent.getStringExtra("id_category")
+        ref = FirebaseDatabase.getInstance().getReference("destination").child(id_category)
         ref.addListenerForSingleValueEvent(object : ValueEventListener{
             override fun onCancelled(p0: DatabaseError) {
                 Toast.makeText(context,"db bermasalah",Toast.LENGTH_SHORT).show()
@@ -39,7 +47,7 @@ class PagerAdapter(private val context: Context) : PagerAdapter() {
             override fun onDataChange(p0: DataSnapshot) {
                 Log.e("pica",p0.child(getImageAt(position)).value.toString())
                 Log.e("pica1",Picasso.get().load(p0.child("gunung_putri").child(getImageAt(position)).value.toString()).into(imageView).toString())
-                val a = p0.child("gunung_putri").child(getImageAt(position))
+                val a = p0.child(id_destination).child(getImageAt(position))
                 Picasso.get().load(a.value.toString()).centerCrop().fit().into(imageView)
             }
 

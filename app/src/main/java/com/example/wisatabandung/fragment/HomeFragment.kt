@@ -59,9 +59,10 @@ class HomeFragment : Fragment() {
         rv_category.layoutManager = LinearLayoutManager(activity,LinearLayoutManager.HORIZONTAL, false)
         rv_category.adapter = CategoryAdapter(activity!!.applicationContext,categories){
             startActivity<ListDestinationActivity>(
-                "id_destination" to it.id,
+                "id_category" to it.id,
                 "slogan" to it.slogan,
                 "username" to username
+
             )
 
         }
@@ -89,7 +90,9 @@ class HomeFragment : Fragment() {
                 Picasso.get().load(model.photo_1).into(holder.itemView.iv_for_you)
                 holder.itemView.setOnClickListener {
                     startActivity<DetailDestination>(
-                        "username" to username
+                        "username" to username,
+                        "id_category" to "camp",
+                        "id_destination" to model.id
                     )
                 }
 

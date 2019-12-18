@@ -82,7 +82,7 @@
                         android:id="@+id/tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        tools:text="Rp. "
+                        android:text="Rp. "
                         android:textSize="14sp"
                         android:textColor="@color/text"
                         android:layout_marginStart="32dp"
@@ -144,35 +144,82 @@
             android:orientation="horizontal"
             android:background="#00FFFFFF">
 
-        <ImageView
+        <LinearLayout
+                android:layout_weight="1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="2"
-                android:src="@drawable/btnmines"
-                android:padding="8dp"
-        />
-        <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:text="1"
-                android:textColor="@color/text"
-                android:textStyle="bold"
-                android:textSize="24sp"
-                android:textAlignment="center"
-        />
+                android:orientation="vertical"
+        >
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+            >
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="Rp. "
+                        android:textColor="@color/text"
+                        android:textSize="11sp"
+                />
+                <TextView
+                        android:id="@+id/total"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        tools:text="200000"
+                        android:textSize="14sp"
+                        android:textColor="#F70000"
+                        android:textStyle="bold"
+                />
 
-        <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="2"
-                android:src="@drawable/btnpls"
-                android:padding="8dp"
-        />
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+            >
+                <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:src="@drawable/btnmines"
+                        android:padding="2dp"
+
+                />
+                <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:text="1"
+                        android:textColor="@color/text"
+                        android:textStyle="bold"
+                        android:textSize="24sp"
+                        android:textAlignment="center"
+                />
+
+                <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:src="@drawable/btnpls"
+                        android:padding="2dp"
+
+                />
+
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+
         <Button
                 android:id="@+id/btn_buy_ticket"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="55dp"
                 android:layout_weight="1"
                 android:background="@drawable/bg_button_green_primary"
                 android:text="Pesan"
@@ -181,7 +228,6 @@
                 android:layout_marginLeft="8dp"
 
         />
-
 
     </LinearLayout>
 
