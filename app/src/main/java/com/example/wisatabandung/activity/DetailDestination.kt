@@ -40,6 +40,9 @@ class DetailDestination : AppCompatActivity(), View.OnClickListener {
     private var bookDate : String = ""
     private var expiredDate : String = ""
 
+    private var noIdTransaction : Long = 0
+    private var idTransaction : String = ""
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_destination)
@@ -117,6 +120,36 @@ class DetailDestination : AppCompatActivity(), View.OnClickListener {
 
                 mDialogView.btn_buy.setOnClickListener {
                     mAlertDialog.dismiss()
+                    userBalance = userBalance - totalCost
+                    ref = FirebaseDatabase.getInstance().getReference()
+                    ref.addListenerForSingleValueEvent(object : ValueEventListener{
+                        override fun onCancelled(p0: DatabaseError) {
+
+                        }
+
+                        override fun onDataChange(p0: DataSnapshot) {
+                            val setBalance = p0.child("user").child(username).child("balance")
+                            val setTransaction = p0.child("transaction").child(username)
+
+                            setBalance.ref.setValue(userBalance)
+
+                            noIdTransaction = setTransaction.childrenCount
+                            Log.e("id",noIdTransaction.toString())
+                            noIdTransaction = noIdTransaction + 1
+                            idTransaction = noIdTransaction.toString()+username+id_category+id_destination+bookDate+expiredDate
+                            Log.e("id_transaksi",idTransaction)
+
+                            setTransaction.ref.child(idTransaction).child("transaction_id").setValue(idTransaction)
+                            setTransaction.ref.child(idTransaction).child("date").setValue(bookDate)
+                            setTransaction.ref.child(idTransaction).child("date_exp").setValue(expiredDate)
+                            setTransaction.ref.child(idTransaction).child("purchased_ticket").setValue(totalTicket)
+                            setTransaction.ref.child(idTransaction).child("name_destination").setValue(name_destination)
+                            setTransaction.ref.child(idTransaction).child("total_pay").setValue(totalCost)
+
+                        }
+
+                    })
+                    Log.e("sisbal", userBalance.toString())
                     startActivity<SuccessBuyActivity>(
                         "username" to username
 
