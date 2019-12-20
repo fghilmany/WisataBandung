@@ -117,8 +117,8 @@ class DetailDestination : AppCompatActivity(), View.OnClickListener {
                 mDialogView.tv_name_dialog.setText(name_user)
                 mDialogView.tv_total.setText("$totalCost")
                 mDialogView.tv_total_order.setText("$totalTicket")
-                mDialogView.tv_expired.setText("$expiredDate")
-                mDialogView.tv_date_order.setText("$bookDate")
+                mDialogView.tv_expired.setText(expiredDate)
+                mDialogView.tv_date_order.setText(bookDate)
 
                 mDialogView.btn_buy.setOnClickListener {
                     mAlertDialog.dismiss()
@@ -151,11 +151,13 @@ class DetailDestination : AppCompatActivity(), View.OnClickListener {
                         }
 
                     })
-                    Log.e("sisbal", userBalance.toString())
+
                     startActivity<SuccessBuyActivity>(
                         "username" to username
 
                     )
+                    finish()
+
                 }
 
                 mDialogView.btn_cancel.setOnClickListener{
