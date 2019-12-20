@@ -32,6 +32,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                 btn_login.setText("")
 
                 initFirebaseLogin()
+                Toast.makeText(applicationContext,"SAMPURASUN",Toast.LENGTH_SHORT).show()
 
             }
 

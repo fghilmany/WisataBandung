@@ -43,11 +43,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/text"
+                    android:textSize="11sp"
                     tools:text="Jl. Gunung Putri Lembang, Kabupaten Bandung Barat, Jawa Barat 40391"
                     android:layout_toRightOf="@id/iv_destination_poster"
                     android:layout_below="@id/tv_name_destination"
                     android:paddingTop="0dp" android:paddingStart="8dp"
-                    android:paddingLeft="8dp" android:paddingEnd="8dp" android:paddingRight="8dp"/>
+                    android:paddingLeft="8dp" android:paddingEnd="8dp"
+                    android:paddingRight="8dp"/>
 
             <TextView
                     android:id="@+id/textview"

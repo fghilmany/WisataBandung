@@ -53,4 +53,7 @@ dependencies {
 
     //viewpager image
     implementation 'me.relex:circleindicator:1.2.2@aar'
+
+    //qrCode
+    implementation 'androidmads.library.qrgenearator:QRGenearator:1.0.3'
 }

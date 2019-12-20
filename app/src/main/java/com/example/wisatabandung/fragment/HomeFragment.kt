@@ -11,7 +11,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import com.example.wisatabandung.R
 import com.example.wisatabandung.activity.DetailDestination
 import com.example.wisatabandung.activity.ListDestinationActivity
@@ -71,6 +70,8 @@ class HomeFragment : Fragment() {
         rv_for_you.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL,false)
 
         foryouDataFromFirebase()
+
+
     }
 
     private fun foryouDataFromFirebase() {
@@ -118,7 +119,7 @@ class HomeFragment : Fragment() {
                 tv_name_home.setText(p0.child("name").value.toString())
                 tv_balance_home.setText(p0.child("balance").value.toString())
                 Picasso.get().load(p0.child("url_foto").value.toString()).centerCrop().fit().into(iv_profil_home)
-                Toast.makeText(activity,p0.child("url_foto").value.toString(),Toast.LENGTH_SHORT).show()
+
                 Log.e("gambar2",p0.child("url_foto").value.toString())
             }
 

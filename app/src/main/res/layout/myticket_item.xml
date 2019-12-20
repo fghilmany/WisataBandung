@@ -62,7 +62,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     tools:text="12 - 10 - 2019"
-                    android:textColor="@color/text"
+                    android:textColor="@android:color/holo_red_dark"
                     android:textStyle="bold"
                     android:textSize="12sp"
                     app:layout_constraintTop_toBottomOf="@+id/textView5"
@@ -83,6 +83,7 @@
                     android:id="@+id/textView6"/>
 
             <Button
+                    android:id="@+id/btn_refund"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/bg_button_green_primary"

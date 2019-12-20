@@ -30,7 +30,7 @@ class ProfilFragment : Fragment(), View.OnClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-       initDataFirebase()
+        initDataFirebase()
 
         tv_logout.setOnClickListener(this)
 

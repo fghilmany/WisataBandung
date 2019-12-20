@@ -56,7 +56,7 @@
                         android:id="@+id/tv_name_destination"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Gunung Putri"
+                        tools:text="Gunung Putri"
                         android:layout_marginLeft="32dp"
                         android:layout_marginTop="32dp"
                         android:textSize="24sp"
@@ -64,7 +64,8 @@
                         android:textStyle="bold"
 
                         android:layout_alignParentLeft="true"
-                        android:layout_alignLeft="@id/fab_direction_location"/>
+                        android:layout_alignLeft="@id/fab_direction_location"
+                        android:layout_toLeftOf="@id/fab_direction_location"/>
 
                 <android.support.design.widget.FloatingActionButton
                         android:id="@+id/fab_direction_location"
@@ -73,6 +74,7 @@
                         android:backgroundTint="@color/colorPrimary"
                         android:layout_width="56dp"
                         android:layout_height="56dp"
+                        app:borderWidth="0dp"
                         app:fabSize="normal"
                         android:layout_alignParentEnd="true"
                         android:layout_marginEnd="32dp"
@@ -87,7 +89,8 @@
                         android:textColor="@color/text"
                         android:layout_marginStart="32dp"
 
-                        android:layout_alignParentBottom="false" android:layout_below="@id/tv_name_destination"/>
+                        android:layout_alignParentBottom="false"
+                        android:layout_below="@id/tv_name_destination"/>
 
 
                 <TextView
@@ -113,7 +116,8 @@
                         android:layout_marginStart="32dp"
                         android:layout_marginEnd="16dp"
 
-                        android:layout_alignParentBottom="true" android:layout_below="@id/fab_direction_location"/>
+                        android:layout_alignParentBottom="true"
+                        android:layout_below="@id/tv"/>
 
             </RelativeLayout>
 

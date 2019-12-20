@@ -8,7 +8,7 @@
         <item>camp</item>
         <item>family</item>
         <item>park</item>
-        <item>villa</item>
+        <item>nature</item>
         <item>museum</item>
     </string-array>
 
@@ -16,7 +16,7 @@
         <item>Camping</item>
         <item>Keluarga</item>
         <item>Taman</item>
-        <item>Villa</item>
+        <item>Wisata Alam</item>
         <item>Museum</item>
     </string-array>
 
@@ -24,7 +24,7 @@
         <item>@drawable/tent</item>
         <item>@drawable/table</item>
         <item>@drawable/swing</item>
-        <item>@drawable/house</item>
+        <item>@drawable/mountains</item>
         <item>@drawable/museum</item>
     </array>
 
@@ -32,7 +32,7 @@
         <item>Ajak Sahabatmu Camping di Bandung</item>
         <item>Piknik dengan Keluarga memang paling cocok</item>
         <item>Taman cocok untuk menikmati kota Bandung</item>
-        <item>Buat pesta di sebuah Villa</item>
+        <item>Nikmati udara segar Bandung</item>
         <item>Tambah wawasan di Museum Bandung</item>
     </string-array>
 

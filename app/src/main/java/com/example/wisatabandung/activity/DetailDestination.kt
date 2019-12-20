@@ -15,9 +15,8 @@ import kotlinx.android.synthetic.main.dialog_buy_ticket.view.*
 import org.jetbrains.anko.startActivity
 import java.text.SimpleDateFormat
 import java.util.*
-
-
-
+import android.content.Intent
+import android.net.Uri
 
 
 class DetailDestination : AppCompatActivity(), View.OnClickListener {
@@ -32,7 +31,7 @@ class DetailDestination : AppCompatActivity(), View.OnClickListener {
     private var name_destination : String = ""
     private var name_user : String = ""
 
-    private var totalTicket : Int = 1
+    private var totalTicket : Int = 0
     private var userBalance : Long = 10
     private var totalCost : Long = 0
     private var ticketPrice : Long = 0
@@ -59,9 +58,12 @@ class DetailDestination : AppCompatActivity(), View.OnClickListener {
         btn_buy_ticket.setOnClickListener(this)
         btn_min.setOnClickListener(this)
         btn_plus.setOnClickListener(this)
+        fab_direction_location.setOnClickListener(this)
 
         btn_min.animate().alpha(0F).setDuration(300).start()
         btn_min.isEnabled = false
+        btn_buy_ticket.isEnabled = false
+        btn_buy_ticket.setBackgroundResource(R.drawable.btn_cancel)
 
     }
 
@@ -201,8 +203,38 @@ class DetailDestination : AppCompatActivity(), View.OnClickListener {
                     btn_buy_ticket.setBackgroundResource(R.drawable.btn_cancel)
 
 
+                }else if (totalCost <= userBalance){
+                    btn_plus.animate().translationY(0F).alpha(1F).setDuration(350).start()
+                    btn_plus.isEnabled = true
+
+                    btn_buy_ticket.isEnabled = true
+                    btn_buy_ticket.setBackgroundResource(R.drawable.bg_button_green_primary)
+
                 }
 
+            }
+
+            R.id.fab_direction_location->{
+                ref = FirebaseDatabase.getInstance().getReference("destination").child(id_category).child(id_destination)
+                ref.addListenerForSingleValueEvent(object : ValueEventListener{
+                    override fun onCancelled(p0: DatabaseError) {
+
+                    }
+
+                    override fun onDataChange(p0: DataSnapshot) {
+                        val intent = Intent(
+                            Intent.ACTION_VIEW,
+                            Uri.parse(p0.child("url_loc").value.toString())
+                        )
+                        startActivity(intent)
+                    }
+
+                })
+                /*val intent = Intent(
+                    android.content.Intent.ACTION_VIEW,
+                    Uri.parse("http://maps.google.com/maps?saddr=20.344,34.34&daddr=20.5666,45.345")
+                )
+                startActivity(intent)*/
             }
         }
     }

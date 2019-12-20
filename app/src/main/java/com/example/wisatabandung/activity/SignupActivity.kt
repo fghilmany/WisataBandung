@@ -40,6 +40,9 @@ class SignupActivity : AppCompatActivity(),View.OnClickListener {
         setContentView(R.layout.activity_signup)
 
         progress_bar.visibility = View.INVISIBLE
+        photoLocation =  Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE +
+                "://" + getResources().getResourcePackageName(R.drawable.default_uri)
+                + '/' + getResources().getResourceTypeName(R.drawable.default_uri) + '/' + getResources().getResourceEntryName(R.drawable.default_uri) )
 
         btn_daftar_baru.setOnClickListener(this)
         fab_add_foto.setOnClickListener(this)
@@ -68,6 +71,7 @@ class SignupActivity : AppCompatActivity(),View.OnClickListener {
                         }else{
                             initFirebase()
 
+
                         }
                     }
 
@@ -92,47 +96,46 @@ class SignupActivity : AppCompatActivity(),View.OnClickListener {
         ref = FirebaseDatabase.getInstance().getReference().child("user").child(username)
         storage = FirebaseStorage.getInstance().getReference().child("user_pic").child(username)
 
-        if (photoLocation != null){
-            val storageReference1 = storage.child(System.currentTimeMillis().toString() +
-                    "." +
-                    getFileExtension(photoLocation))
+        val storageReference1 = storage.child(System.currentTimeMillis().toString() +
+                "." +
+                getFileExtension(photoLocation))
 
-            storageReference1.putFile(photoLocation)
-                .addOnSuccessListener(object : OnSuccessListener<UploadTask.TaskSnapshot>{
-                    override fun onSuccess(taskSnapshot: UploadTask.TaskSnapshot) {
+        storageReference1.putFile(photoLocation)
+            .addOnSuccessListener(object : OnSuccessListener<UploadTask.TaskSnapshot>{
+                override fun onSuccess(taskSnapshot: UploadTask.TaskSnapshot) {
 
-                        storageReference1.downloadUrl.addOnSuccessListener(object : OnSuccessListener<Uri>{
-                            override fun onSuccess(p0: Uri?) {
-                                val uri_photo = p0.toString()
-                                ref.child("url_foto").setValue(uri_photo)
-                                ref.child("username").setValue(edt_username.text.toString())
-                                ref.child("email").setValue(edt_email.text.toString())
-                                ref.child("password").setValue(edt_password.text.toString())
-                                ref.child("name").setValue(edt_nama.text.toString())
-                                ref.child("balance").setValue(0)
-                                ref.child("username").setValue(edt_username.text.toString())
+                    storageReference1.downloadUrl.addOnSuccessListener(object : OnSuccessListener<Uri>{
+                        override fun onSuccess(p0: Uri?) {
+                            val uri_photo = p0.toString()
+                            ref.child("url_foto").setValue(uri_photo)
+                            ref.child("username").setValue(edt_username.text.toString())
+                            ref.child("email").setValue(edt_email.text.toString())
+                            ref.child("password").setValue(edt_password.text.toString())
+                            ref.child("name").setValue(edt_nama.text.toString())
+                            ref.child("balance").setValue(0)
+                            ref.child("username").setValue(edt_username.text.toString())
 
 
-                            }
+                        }
 
-                        }).addOnCompleteListener(object : OnCompleteListener<Uri>{
-                            override fun onComplete(p0: Task<Uri>) {
-                                startActivity<SuccessSignupActivity>(
-                                    "username" to username
-                                )
-                                finish()
-                            }
+                    }).addOnCompleteListener(object : OnCompleteListener<Uri>{
+                        override fun onComplete(p0: Task<Uri>) {
+                            startActivity<SuccessSignupActivity>(
+                                "username" to username
+                            )
+                            finish()
 
-                        })
-                    }
+                        }
 
-                }).addOnCompleteListener(object : OnCompleteListener<UploadTask.TaskSnapshot>{
-                    override fun onComplete(p0: Task<UploadTask.TaskSnapshot>) {
+                    })
+                }
 
-                    }
+            }).addOnCompleteListener(object : OnCompleteListener<UploadTask.TaskSnapshot>{
+                override fun onComplete(p0: Task<UploadTask.TaskSnapshot>) {
 
-                })
-        }
+                }
+
+            })
     }
 
     fun getFileExtension(uri: Uri): String? {
