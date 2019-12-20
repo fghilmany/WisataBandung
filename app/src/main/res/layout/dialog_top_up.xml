@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/dialog_green_flat"
+        android:orientation="vertical"
+>
+
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="TOP UP E-PAY"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/text"
+            android:textAlignment="center"
+            android:background="#EDFFDA"
+            android:layout_marginBottom="16dp"
+    />
+
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Nominal Top Up"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/text"
+            android:layout_marginStart="16dp"
+    />
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/btn_cancel"
+            android:orientation="horizontal"
+            android:layout_margin="16dp"
+            android:padding="16dp"
+    >
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Rp. "
+                android:gravity="center_vertical"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/text"
+        />
+        <EditText
+                android:id="@+id/edt_top_up"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="@color/text"
+                android:hint="20000"
+                android:inputType="number"
+        />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:padding="16dp"
+    >
+        <Button
+                android:id="@+id/btn_cancel_topup"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="Batal"
+                android:background="@drawable/btn_cancel"
+                android:textColor="@color/colorPrimaryDark"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:layout_margin="8dp"
+        />
+
+        <Button
+                android:id="@+id/btn_yes_topup"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="Top UP"
+                android:background="@drawable/btn_green_dark"
+                android:textColor="#fff"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:layout_margin="8dp"
+        />
+
+    </LinearLayout>
+
+</LinearLayout>
