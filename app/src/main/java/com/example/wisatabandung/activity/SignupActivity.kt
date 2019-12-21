@@ -44,7 +44,7 @@ class SignupActivity : AppCompatActivity(),View.OnClickListener {
                 "://" + getResources().getResourcePackageName(R.drawable.default_uri)
                 + '/' + getResources().getResourceTypeName(R.drawable.default_uri) + '/' + getResources().getResourceEntryName(R.drawable.default_uri) )
 
-        btn_daftar_baru.setOnClickListener(this)
+        btn_daftar_baru.setOnClickListener(this@SignupActivity)
         fab_add_foto.setOnClickListener(this)
 
     }
@@ -56,26 +56,8 @@ class SignupActivity : AppCompatActivity(),View.OnClickListener {
                 progress_bar.visibility = View.VISIBLE
                 btn_daftar_baru.setText("")
 
-                ref = FirebaseDatabase.getInstance().getReference().child("user").child(username)
-                ref.addValueEventListener(object:ValueEventListener{
-                    override fun onCancelled(p0: DatabaseError) {
-                        Toast.makeText(applicationContext,"DB Bermasalah",Toast.LENGTH_SHORT).show()
+                initFirebase()
 
-                    }
-
-                    override fun onDataChange(p0: DataSnapshot) {
-                        if (p0.exists()){
-                            Toast.makeText(applicationContext,"Username sudah ada",Toast.LENGTH_SHORT).show()
-                            progress_bar.visibility = View.INVISIBLE
-                            btn_daftar_baru.setText("Login")
-                        }else{
-                            initFirebase()
-
-
-                        }
-                    }
-
-                })
             }
 
             R.id.fab_add_foto -> {
@@ -100,42 +82,67 @@ class SignupActivity : AppCompatActivity(),View.OnClickListener {
                 "." +
                 getFileExtension(photoLocation))
 
-        storageReference1.putFile(photoLocation)
-            .addOnSuccessListener(object : OnSuccessListener<UploadTask.TaskSnapshot>{
-                override fun onSuccess(taskSnapshot: UploadTask.TaskSnapshot) {
+        if (photoLocation != null){
 
-                    storageReference1.downloadUrl.addOnSuccessListener(object : OnSuccessListener<Uri>{
-                        override fun onSuccess(p0: Uri?) {
-                            val uri_photo = p0.toString()
-                            ref.child("url_foto").setValue(uri_photo)
-                            ref.child("username").setValue(edt_username.text.toString())
-                            ref.child("email").setValue(edt_email.text.toString())
-                            ref.child("password").setValue(edt_password.text.toString())
-                            ref.child("name").setValue(edt_nama.text.toString())
-                            ref.child("balance").setValue(0)
-                            ref.child("username").setValue(edt_username.text.toString())
+            storageReference1.putFile(photoLocation)
+                .addOnSuccessListener(object : OnSuccessListener<UploadTask.TaskSnapshot>{
+                    override fun onSuccess(taskSnapshot: UploadTask.TaskSnapshot) {
+
+                        storageReference1.downloadUrl.addOnSuccessListener(object : OnSuccessListener<Uri>{
+                            override fun onSuccess(p0: Uri?) {
+                                val uri_photo = p0.toString()
+
+                                ref.addListenerForSingleValueEvent(object : ValueEventListener{
+                                    override fun onCancelled(p0: DatabaseError) {
+
+                                    }
+
+                                    override fun onDataChange(p0: DataSnapshot) {
+                                        if (p0.exists()){
+                                            Toast.makeText(applicationContext,"Username sudah ada",Toast.LENGTH_SHORT).show()
+                                            progress_bar.visibility = View.INVISIBLE
+                                            btn_daftar_baru.setText("Daftar")
+
+                                        }else{
+                                            ref.child("url_foto").setValue(uri_photo)
+                                            ref.child("username").setValue(edt_username.text.toString())
+                                            ref.child("email").setValue(edt_email.text.toString())
+                                            ref.child("password").setValue(edt_password.text.toString())
+                                            ref.child("name").setValue(edt_nama.text.toString())
+                                            ref.child("balance").setValue(0)
+                                            ref.child("username").setValue(edt_username.text.toString())
+
+                                            startActivity<SuccessSignupActivity>(
+                                                "username" to username
+                                            )
+                                            finish()
+
+                                        }
+                                    }
+
+                                })
+
+                            }
+
+                        }).addOnCompleteListener(object : OnCompleteListener<Uri>{
+                            override fun onComplete(p0: Task<Uri>) {
 
 
-                        }
+                            }
 
-                    }).addOnCompleteListener(object : OnCompleteListener<Uri>{
-                        override fun onComplete(p0: Task<Uri>) {
-                            startActivity<SuccessSignupActivity>(
-                                "username" to username
-                            )
-                            finish()
+                        })
+                    }
 
-                        }
+                }).addOnCompleteListener(object : OnCompleteListener<UploadTask.TaskSnapshot>{
+                    override fun onComplete(p0: Task<UploadTask.TaskSnapshot>) {
 
-                    })
-                }
+                    }
 
-            }).addOnCompleteListener(object : OnCompleteListener<UploadTask.TaskSnapshot>{
-                override fun onComplete(p0: Task<UploadTask.TaskSnapshot>) {
+                })
 
-                }
+        }
 
-            })
+
     }
 
     fun getFileExtension(uri: Uri): String? {

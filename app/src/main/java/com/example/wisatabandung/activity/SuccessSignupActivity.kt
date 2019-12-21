@@ -40,7 +40,6 @@ class SuccessSignupActivity : AppCompatActivity() {
         username = intent.getStringExtra("username")
 
         Handler().postDelayed({
-            Toast.makeText(applicationContext,"SAMPURASUN",Toast.LENGTH_SHORT).show()
             startActivity<HomeActivity>(
                 "username" to username
             )

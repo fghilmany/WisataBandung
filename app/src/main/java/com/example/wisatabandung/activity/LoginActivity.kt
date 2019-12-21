@@ -62,7 +62,6 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                         startActivity<HomeActivity>(
                             "username" to username
                         )
-                        Toast.makeText(applicationContext,"SAMPURASUN",Toast.LENGTH_SHORT).show()
                         finish()
                     }else{
                         Toast.makeText(applicationContext, " password salah ", Toast.LENGTH_SHORT).show()
